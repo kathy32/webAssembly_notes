@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cppToJavaScript</title>
+</head>
+<body>
+  <script>
+    Module = {}
+    // 在 Module 初始化前，向 Module 中注入一个名为 onRuntimeInitialized 的方法，Emscripten 的 Runtime 就绪后，将会回调该方法
+    Module.onRuntimeInitialized  = function() {
+      console.log(Module._show_me_the_answer())
+      console.log(Module._add(64, 32.2))
+    }
+    </script>
+    <script src="./cppToJavaScript.js"></script>
+</body>
+</html>
