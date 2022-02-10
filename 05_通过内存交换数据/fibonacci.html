@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fibonacci</title>
+  </head>
+  <body>
+    <script>
+      Module = {};
+      Module.onRuntimeInitialized = function () {
+        var ptr = Module._fibonacci(10);
+        if (ptr === 0) {
+          return;
+        }
+
+        var str = "";
+        for (var i = 0; i < 10; i++) {
+          str += Module.HEAP32[(ptr >> 2) + i];
+          str += " ";
+        }
+
+        console.log(str); // 1 1 2 3 5 8 13 21 34 55
+        console.log("ptr:", ptr); // ptr: 5246520
+        Module._free_buf(ptr);
+      };
+    </script>
+    <script src="./fibonacci.js"></script>
+  </body>
+</html>
